@@ -14,7 +14,6 @@
 
 	var stylishToggle = stylishToggle = {
 
-		//selector : 'style.stylish[id*=stylish]',
 		selector : 'style.stylish-style',
 		
 		init : function() {
@@ -33,8 +32,7 @@
 		addToggle : function() {
 			// flat toggle button from http://codepen.io/mallendeo/pen/eLIiG/
 			var toggle = document.createElement( 'div' ),
-				html = '<i>Stylish mode</i>' + 
-				'<input class="stylish-toggle stylish-toggle-flat" id="stylish-toggle-checkbox" type="checkbox" checked>' +
+				html = '<input class="stylish-toggle stylish-toggle-flat" id="stylish-toggle-checkbox" type="checkbox" checked>' +
 				'<label class="stylish-toggle-btn" for="stylish-toggle-checkbox"></label>' +
 				// toggle css
 				'<style>' +
