@@ -14,8 +14,9 @@
 
 	var stylishToggle = stylishToggle = {
 
-		selector : 'style.stylish[id*=stylish]',
-
+		//selector : 'style.stylish[id*=stylish]',
+		selector : 'style.stylish-style',
+		
 		init : function() {
 			if ( document.querySelectorAll( this.selector ).length ) {
 				this.addToggle();
@@ -32,7 +33,8 @@
 		addToggle : function() {
 			// flat toggle button from http://codepen.io/mallendeo/pen/eLIiG/
 			var toggle = document.createElement( 'div' ),
-				html = '<input class="stylish-toggle stylish-toggle-flat" id="stylish-toggle-checkbox" type="checkbox" checked>' +
+				html = '<i>Stylish mode</i>' + 
+				'<input class="stylish-toggle stylish-toggle-flat" id="stylish-toggle-checkbox" type="checkbox" checked>' +
 				'<label class="stylish-toggle-btn" for="stylish-toggle-checkbox"></label>' +
 				// toggle css
 				'<style>' +
@@ -63,9 +65,18 @@
 				'.stylish-toggle-flat:checked + .stylish-toggle-btn:after { left: 50%; background: #7FC6A6; }' +
 				'</style>';
 
+			 const policy = trustedTypes.createPolicy('myPolicy', {
+		                createHTML: (input) => {
+		                    return input;
+		                }
+		            });
+			const safeHTML = policy.createHTML(html);
+			
 			toggle.classList.add( 'stylish-toggle-wrap' );
 			toggle.title = "Toggle Applied Stylish Theme";
-			toggle.innerHTML = html;
+			//toggle.innerHTML = html;
+			toggle.innerHTML = safeHTML;
+            
 			document.querySelector( 'body' ).appendChild( toggle );
 			toggle.querySelector( 'input' ).addEventListener( 'change', this.toggle );
 		}
